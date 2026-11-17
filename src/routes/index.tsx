@@ -114,7 +114,7 @@ function Index() {
           <h2 className="text-center text-2xl font-extrabold md:text-4xl">Encontre seu modelo favorito!</h2>
           <article className="mt-8 grid gap-6 rounded-3xl bg-card p-4 shadow-card md:grid-cols-2 md:p-8">
             <div>
-              <img src={gallery[img].url} alt="Copo Térmico Romantic Crown" className="aspect-square w-full rounded-2xl object-cover" />
+              <img src={(gallery[img] ?? hero).url} alt="Copo Térmico Romantic Crown" className="aspect-square w-full rounded-2xl object-cover" />
               <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
                 {gallery.map((g, i) => (
                   <button key={i} onClick={() => setImg(i)} className={`h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 ${i === img ? "border-gold" : "border-transparent"}`}>
