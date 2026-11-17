@@ -58,9 +58,12 @@ const faq = [
 
 function BuyButton({ href, label = "VER NA SHOPEE" }: { href: string; label?: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer sponsored" className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-base">
-      <ShoppingBag className="h-5 w-5" /> {label}
-    </a>
+    <div>
+      <a href={href} target="_blank" rel="noopener noreferrer sponsored" className="btn-shopee flex w-full items-center justify-center gap-2 px-6 py-4 text-lg">
+        <ShoppingBag className="h-5 w-5" /> {label}
+      </a>
+      <p className="mt-2 text-center text-xs text-muted-foreground">Ao clicar, você será direcionado para a Shopee, onde poderá conferir o preço, as avaliações e finalizar sua compra com segurança.</p>
+    </div>
   );
 }
 
@@ -70,7 +73,7 @@ function Index() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen w-full overflow-x-hidden bg-background text-foreground">
       <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
           <img src={logo} alt="Mr Garrafas Térmica" width={1536} height={512} className="h-12 w-auto" />
@@ -81,7 +84,7 @@ function Index() {
       {/* Hero */}
       <section className="bg-ink text-ink-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 md:grid-cols-2 md:py-20">
-          <div>
+          <div className="min-w-0">
             <span className="text-xs font-bold uppercase tracking-[0.25em] text-gold">Copos térmicos premium</span>
             <h1 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">
               Mais praticidade e <span className="text-gold-gradient">estilo</span> para acompanhar você todos os dias!
@@ -113,7 +116,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-center text-2xl font-extrabold md:text-4xl">Encontre seu modelo favorito!</h2>
           <article className="mt-8 grid gap-6 rounded-3xl bg-card p-4 shadow-card md:grid-cols-2 md:p-8">
-            <div>
+            <div className="min-w-0">
               <img src={(gallery[img] ?? hero).url} alt="Copo Térmico Romantic Crown" className="aspect-square w-full rounded-2xl object-cover" />
               <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
                 {gallery.map((g, i) => (
@@ -123,7 +126,7 @@ function Index() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex min-w-0 flex-col">
               <span className="w-fit rounded-full bg-ink px-3 py-1 text-xs font-bold text-gold">MAIS ESCOLHIDO</span>
               <h3 className="mt-3 text-2xl font-extrabold">Copo Térmico Romantic Crown 1200ml</h3>
               <p className="mt-2 text-muted-foreground">Design elegante em 7 cores, com alça, tampa e canudo de aço inoxidável. Perfeito para levar sua bebida para qualquer lugar.</p>
@@ -157,6 +160,21 @@ function Index() {
         </div>
       </section>
 
+      {/* Shopee trust */}
+      <section className="mx-auto max-w-6xl px-4 pb-14">
+        <div className="rounded-3xl border-2 border-shopee bg-card p-6 text-center shadow-card md:p-10">
+          <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-shopee text-shopee-foreground"><ShoppingBag className="h-7 w-7" /></div>
+          <h2 className="mt-4 text-2xl font-extrabold md:text-3xl">Compra realizada diretamente na <span className="text-shopee">Shopee</span></h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Este produto é vendido na Shopee. Ao clicar no botão, você será direcionado para a plataforma da Shopee, onde vê o preço, as avaliações de outros compradores e finaliza o pedido por lá.</p>
+          <ul className="mx-auto mt-6 grid max-w-2xl gap-3 text-left text-sm sm:grid-cols-3">
+            <li className="rounded-xl bg-muted p-3"><b>1.</b> Clique em “VER NA SHOPEE”</li>
+            <li className="rounded-xl bg-muted p-3"><b>2.</b> Confira preço, cores e avaliações</li>
+            <li className="rounded-xl bg-muted p-3"><b>3.</b> Finalize a compra na Shopee</li>
+          </ul>
+          <div className="mx-auto mt-6 max-w-sm"><BuyButton href={AFFILIATE_LINKS.romanticCrown} /></div>
+        </div>
+      </section>
+
       {/* Highlight */}
       <section className="bg-ink px-4 py-16 text-center text-ink-foreground">
         <h2 className="mx-auto max-w-2xl text-2xl font-extrabold md:text-4xl">Praticidade que faz a <span className="text-gold-gradient">diferença</span> na sua rotina!</h2>
@@ -177,12 +195,13 @@ function Index() {
             </div>
           ))}
         </div>
-        <div className="mt-8"><BuyButton href={AFFILIATE_LINKS.romanticCrown} label="QUERO O MEU NA SHOPEE" /></div>
+        <div className="mt-8"><BuyButton href={AFFILIATE_LINKS.romanticCrown} /></div>
       </section>
 
       <footer className="bg-ink px-4 py-10 text-center text-xs text-ink-foreground/60">
         <p className="mx-auto max-w-2xl">Os produtos apresentados são comercializados na Shopee. Ao clicar nos links de compra, você será direcionado para a plataforma.</p>
         <p className="mx-auto mt-3 max-w-2xl">Esta página participa de programas de afiliados. Podemos receber uma comissão por compras realizadas através dos nossos links, sem custo adicional para você.</p>
+        <p className="mx-auto mt-3 max-w-2xl">Esta página é uma vitrine de divulgação de produtos. Não realizamos vendas diretamente. A compra é finalizada na plataforma Shopee.</p>
         <p className="mt-4 text-gold">© Mr Garrafas Térmica</p>
       </footer>
     </div>

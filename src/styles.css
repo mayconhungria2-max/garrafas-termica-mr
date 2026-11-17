@@ -32,6 +32,8 @@
 @theme inline {
   --font-display: "Sora", sans-serif;
   --font-sans: "Manrope", sans-serif;
+  --color-shopee: var(--shopee);
+  --color-shopee-foreground: var(--shopee-foreground);
   --color-gold: var(--gold);
   --color-gold-foreground: var(--gold-foreground);
   --color-ink: var(--ink);
@@ -80,6 +82,8 @@
 
 :root {
   --radius: 1rem;
+  --shopee: oklch(0.65 0.2 38);
+  --shopee-foreground: oklch(1 0 0);
   --gold: oklch(0.8 0.15 85);
   --gold-foreground: oklch(0.15 0.01 80);
   --ink: oklch(0.15 0.005 80);
@@ -175,8 +179,6 @@
   font-weight: 800;
   letter-spacing: 0.03em;
   border-radius: 9999px;
-  transition: transform .2s;
-  &:hover { transform: translateY(-2px); }
 }
 @utility shadow-card { box-shadow: var(--shadow-card); }
 @utility text-gold-gradient {
@@ -186,3 +188,15 @@
   color: transparent;
 }
 @layer base { body { font-family: var(--font-sans); } h1,h2,h3 { font-family: var(--font-display); } html { scroll-behavior: smooth; } }
+
+@utility btn-shopee {
+  background: var(--shopee);
+  color: var(--shopee-foreground);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 24px -10px oklch(0.65 0.2 38 / 0.6);
+  &:hover { filter: brightness(1.05); }
+}
+@layer base { html, body { overflow-x: hidden; max-width: 100%; } img { max-width: 100%; } }
