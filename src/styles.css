@@ -200,3 +200,10 @@
   &:hover { filter: brightness(1.05); }
 }
 @layer base { html, body { overflow-x: hidden; max-width: 100%; } img { max-width: 100%; } }
+
+/* Hide the "Edit with Lovable" badge */
+#lovable-badge,
+button[aria-label*="Lovable"],
+div[class*="lovable"] {
+  display: none !important;
+}
